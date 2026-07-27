@@ -1,0 +1,31 @@
+<?php
+
+namespace App\Http\Controllers\Auth;
+
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Auth\LoginUserRequest;
+use App\Business\Auth\LoginUserBusiness;
+
+class LoginController extends Controller
+{
+    public function create()
+    {
+        return view('auth.login');
+    }
+
+    public function store(LoginUserRequest $request, LoginUserBusiness $loginBusiness)
+    {
+        $username = $request->input('text_username');
+        $password = $request->input('text_password');
+
+        if (!$loginBusiness->authenticate($username, $password)) {
+            return back()
+                ->withInput($request->only('text_username'))
+                ->withErrors(['text_username' => 'Usuário ou senha inválidos.']);
+        }
+
+        $request->session()->regenerate();
+
+        return to_route('home');;
+    }
+}
