@@ -1,18 +1,18 @@
-@extends('layouts.main_layout')
+@extends('layouts.guest_layout')
 @section('content')
 
-    <!-- Layout Dividido de Tela Cheia -->
+    <!-- Full Screen Split Layout -->
     <div class="container-fluid min-vh-100 p-0">
         <div class="row g-0 min-vh-100">
 
-            <!-- COLUNA ESQUERDA: Branding e Conceito (Escondida em mobile, destaque em desktop) -->
+            <!-- LEFT COLUMN: Branding & Concept (Hidden on mobile, prominent on desktop) -->
             <div class="col-lg-7 d-none d-lg-flex flex-column justify-content-between p-5 bg-dark text-white position-relative overflow-hidden border-end border-secondary">
 
-                <!-- Elemento gráfico de fundo sutil (brilho moderno) -->
+                <!-- Subtle background graphic elements (modern glow) -->
                 <div class="position-absolute top-0 start-0 translate-middle rounded-circle bg-primary opacity-10 blur-3xl" style="width: 500px; height: 500px;"></div>
                 <div class="position-absolute bottom-0 end-0 translate-middle rounded-circle bg-info opacity-10 blur-3xl" style="width: 400px; height: 400px;"></div>
 
-                <!-- Topo da Esquerda: Logo / Nome -->
+                <!-- Left Top: Logo / Name -->
                 <div class="z-1">
                     <div class="d-inline-flex align-items-center gap-2">
                         <div class="bg-primary text-white rounded-2 p-2 d-flex align-items-center justify-content-center fw-bold shadow-sm" style="width: 36px; height: 36px;">
@@ -22,30 +22,30 @@
                     </div>
                 </div>
 
-                <!-- Centro da Esquerda: Frase de Impacto para Todo-List -->
+                <!-- Left Center: Impact Statement for Todo-List -->
                 <div class="z-1 my-auto py-5" style="max-width: 500px;">
                     <span class="badge bg-primary text-white fw-semibold px-3 py-2 rounded-pill mb-4 shadow-sm" style="font-size: 0.75rem; letter-spacing: 0.05em;">
-                        ✨ Produtividade sem atritos
+                        ✨ Frictionless Productivity
                     </span>
                     <h1 class="display-5 fw-bold text-white mb-3" style="letter-spacing: -0.02em; line-height: 1.2;">
-                        Organize suas ideias. Conquiste seu dia.
+                        Organize your ideas. Conquer your day.
                     </h1>
                     <p class="text-light text-opacity-75 lead fs-6 mb-0 fw-medium">
-                        Um espaço minimalista e veloz para gerenciar suas tarefas, notas e objetivos diários sem distrações.
+                        A minimalist and lightning-fast space to manage your daily tasks, notes, and goals without distractions.
                     </p>
                 </div>
 
-                <!-- Rodapé da Esquerda -->
+                <!-- Left Footer -->
                 <div class="z-1 text-light text-opacity-75 small fw-medium">
-                    &copy; {{ date('Y') }} Todo Studio. Todos os direitos reservados.
+                    &copy; {{ date('Y') }} Todo Studio. All rights reserved.
                 </div>
             </div>
 
-            <!-- COLUNA DIREITA: O Formulário de Login (Minimalista e Focado) -->
+            <!-- RIGHT COLUMN: The Login Form (Minimalist and Focused) -->
             <div class="col-lg-5 d-flex align-items-center justify-content-center p-4 p-sm-5 bg-white">
                 <div class="w-100" style="max-width: 400px;">
 
-                    <!-- Cabeçalho Mobile (Aparece apenas em telas pequenas onde a coluna esquerda some) -->
+                    <!-- Mobile Header (Appears only on small screens where the left column is hidden) -->
                     <div class="d-lg-none mb-4 text-center">
                         <div class="d-inline-flex align-items-center justify-content-center bg-dark text-white rounded-2 p-2 mb-2 fw-bold shadow-sm" style="width: 36px; height: 36px;">
                             <i class="fa-solid fa-check-double"></i>
@@ -53,13 +53,13 @@
                         <h2 class="h5 fw-bold">Todo OS</h2>
                     </div>
 
-                    <!-- Título de Boas-vindas -->
+                    <!-- Welcome Title -->
                     <div class="mb-4">
-                        <h2 class="fw-bold text-dark fs-3 mb-1">Bem-vindo de volta</h2>
-                        <p class="text-secondary fw-medium small">Digite suas credenciais para acessar sua conta.</p>
+                        <h2 class="fw-bold text-dark fs-3 mb-1">Welcome back</h2>
+                        <p class="text-secondary fw-medium small">Enter your credentials to access your account.</p>
                     </div>
 
-                    <!-- Formulário -->
+                    <!-- Form -->
                     <form action="{{ route('login.store') }}" method="post" novalidate autocomplete="off">
                         @csrf
 
@@ -76,7 +76,7 @@
                                        id="text_username"
                                        name="text_username"
                                        value="{{ old('text_username') }}"
-                                       placeholder="Seu username"
+                                       placeholder="Enter your username"
                                        required>
                             </div>
 
@@ -91,7 +91,7 @@
                         <div class="mb-4">
                             <div class="d-flex justify-content-between align-items-center mb-1">
                                 <label for="text_password" class="form-label text-dark small fw-semibold mb-0">Password</label>
-                                <a href="#" class="small text-decoration-none text-secondary fw-semibold hover-dark">Esqueceu?</a>
+                                <a href="#" class="small text-decoration-none text-secondary fw-semibold hover-dark">Forgot password?</a>
                             </div>
                             <div class="input-group border border-secondary border-opacity-25 rounded-2 bg-light">
                                 <span class="input-group-text bg-transparent border-0 text-secondary ps-3">
@@ -113,22 +113,22 @@
                             @enderror
                         </div>
 
-                        <!-- Botão de Ação -->
+                        <!-- Action Button -->
                         <div class="mb-3">
                             <button type="submit" class="btn btn-dark w-100 py-3 fw-semibold rounded-2 shadow-sm transition-all">
-                                Acessar Plataforma
+                                Access Platform
                             </button>
                         </div>
 
-                        <!-- Link para Cadastro -->
+                        <!-- Register Link -->
                         <div class="text-center">
                             <a href="{{ route('register') }}" class="small text-decoration-none text-secondary fw-semibold hover-dark">
-                                Não tem uma conta? <span class="text-dark fw-bold">Cadastre-se!</span>
+                                Don't have an account? <span class="text-dark fw-bold">Sign up!</span>
                             </a>
                         </div>
                     </form>
 
-                    <!-- Rodapé Mobile -->
+                    <!-- Mobile Footer -->
                     <div class="d-lg-none text-center text-secondary fw-medium mt-5 small">
                         &copy; {{ date('Y') }} Todo Studio
                     </div>
@@ -139,7 +139,7 @@
         </div>
     </div>
 
-    <!-- Estilos de Refinamento -->
+    <!-- Refinement Styles -->
     <style>
         .hover-dark:hover {
             color: #000 !important;

@@ -1,18 +1,18 @@
-@extends('layouts.main_layout')
+@extends('layouts.guest_layout')
 @section('content')
 
-    <!-- Layout Dividido de Tela Cheia -->
+    <!-- Full Screen Split Layout -->
     <div class="container-fluid min-vh-100 p-0">
         <div class="row g-0 min-vh-100">
 
-            <!-- COLUNA ESQUERDA: Branding e Conceito (Idêntico ao Login para manter consistência) -->
+            <!-- LEFT COLUMN: Branding & Concept (Identical to login to maintain consistency) -->
             <div class="col-lg-7 d-none d-lg-flex flex-column justify-content-between p-5 bg-dark text-white position-relative overflow-hidden border-end border-secondary">
 
-                <!-- Elementos gráficos de fundo sutis (brilho moderno) -->
+                <!-- Subtle background graphic elements (modern glow) -->
                 <div class="position-absolute top-0 start-0 translate-middle rounded-circle bg-primary opacity-10 blur-3xl" style="width: 500px; height: 500px;"></div>
                 <div class="position-absolute bottom-0 end-0 translate-middle rounded-circle bg-info opacity-10 blur-3xl" style="width: 400px; height: 400px;"></div>
 
-                <!-- Topo da Esquerda: Logo / Nome -->
+                <!-- Left Top: Logo / Name -->
                 <div class="z-1">
                     <div class="d-inline-flex align-items-center gap-2">
                         <div class="bg-primary text-white rounded-2 p-2 d-flex align-items-center justify-content-center fw-bold shadow-sm" style="width: 36px; height: 36px;">
@@ -22,30 +22,30 @@
                     </div>
                 </div>
 
-                <!-- Centro da Esquerda: Frase de Impacto para Criação de Conta -->
+                <!-- Left Center: Impact Statement for Account Creation -->
                 <div class="z-1 my-auto py-5" style="max-width: 500px;">
                     <span class="badge bg-primary text-white fw-semibold px-3 py-2 rounded-pill mb-4 shadow-sm" style="font-size: 0.75rem; letter-spacing: 0.05em;">
-                        🚀 Comece gratuitamente
+                        🚀 Start for free
                     </span>
                     <h1 class="display-5 fw-bold text-white mb-3" style="letter-spacing: -0.02em; line-height: 1.2;">
-                        Transforme caos em tarefas concluídas.
+                        Transform chaos into completed tasks.
                     </h1>
                     <p class="text-light text-opacity-75 lead fs-6 mb-0 fw-medium">
-                        Crie sua conta em segundos e tenha o controle total das suas notas, ideias e projetos diários em um só lugar.
+                        Create your account in seconds and gain full control over your notes, ideas, and daily projects in one place.
                     </p>
                 </div>
 
-                <!-- Rodapé da Esquerda -->
+                <!-- Left Footer -->
                 <div class="z-1 text-light text-opacity-75 small fw-medium">
-                    &copy; {{ date('Y') }} Todo Studio. Todos os direitos reservados.
+                    &copy; {{ date('Y') }} Todo Studio. All rights reserved.
                 </div>
             </div>
 
-            <!-- COLUNA DIREITA: O Formulário de Registro (Minimalista e Focado) -->
+            <!-- RIGHT COLUMN: The Registration Form (Minimalist and Focused) -->
             <div class="col-lg-5 d-flex align-items-center justify-content-center p-4 p-sm-5 bg-white">
                 <div class="w-100" style="max-width: 400px;">
 
-                    <!-- Cabeçalho Mobile (Aparece apenas em telas pequenas) -->
+                    <!-- Mobile Header (Appears only on small screens) -->
                     <div class="d-lg-none mb-4 text-center">
                         <div class="d-inline-flex align-items-center justify-content-center bg-dark text-white rounded-2 p-2 mb-2 fw-bold shadow-sm" style="width: 36px; height: 36px;">
                             <i class="fa-solid fa-check-double"></i>
@@ -53,13 +53,13 @@
                         <h2 class="h5 fw-bold">Todo OS</h2>
                     </div>
 
-                    <!-- Título de Boas-vindas -->
+                    <!-- Welcome Title -->
                     <div class="mb-4">
-                        <h2 class="fw-bold text-dark fs-3 mb-1">Criar sua conta</h2>
-                        <p class="text-secondary fw-medium small">Preencha os dados abaixo para começar.</p>
+                        <h2 class="fw-bold text-dark fs-3 mb-1">Create an account</h2>
+                        <p class="text-secondary fw-medium small">Fill in the details below to get started.</p>
                     </div>
 
-                    <!-- Formulário de Registro -->
+                    <!-- Registration Form -->
                     <form action="{{ route('register.store') }}" method="post" novalidate autocomplete="off">
                         @csrf
 
@@ -76,7 +76,7 @@
                                        id="text_username"
                                        name="text_username"
                                        value="{{ old('text_username') }}"
-                                       placeholder="Seu username"
+                                       placeholder="Enter your username"
                                        required>
                             </div>
 
@@ -87,7 +87,7 @@
                             @enderror
                         </div>
 
-                        <!-- E-mail (Corrigido o type para email) -->
+                        <!-- E-mail -->
                         <div class="mb-3">
                             <label for="text_email" class="form-label text-dark small fw-semibold">E-mail</label>
                             <div class="input-group border border-secondary border-opacity-25 rounded-2 bg-light">
@@ -100,7 +100,7 @@
                                        id="text_email"
                                        name="text_email"
                                        value="{{ old('text_email') }}"
-                                       placeholder="seu@email.com"
+                                       placeholder="your@email.com"
                                        required>
                             </div>
 
@@ -136,7 +136,7 @@
 
                         <!-- Confirm Password -->
                         <div class="mb-4">
-                            <label for="text_password_confirmation" class="form-label text-dark small fw-semibold">Confirmar Password</label>
+                            <label for="text_password_confirmation" class="form-label text-dark small fw-semibold">Confirm Password</label>
                             <div class="input-group border border-secondary border-opacity-25 rounded-2 bg-light">
                                 <span class="input-group-text bg-transparent border-0 text-secondary ps-3">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-shield-check" viewBox="0 0 16 16">
@@ -157,22 +157,22 @@
                             @enderror
                         </div>
 
-                        <!-- Botão de Ação -->
+                        <!-- Action Button -->
                         <div class="mb-3">
                             <button type="submit" class="btn btn-dark w-100 py-3 fw-semibold rounded-2 shadow-sm transition-all">
-                                Criar Conta
+                                Create Account
                             </button>
                         </div>
 
-                        <!-- Link para voltar ao Login -->
+                        <!-- Link back to Login -->
                         <div class="text-center">
                             <a href="{{ route('login') }}" class="small text-decoration-none text-secondary fw-semibold hover-dark">
-                                Já tem uma conta? <span class="text-dark fw-bold">Faça login</span>
+                                Already have an account? <span class="text-dark fw-bold">Sign in</span>
                             </a>
                         </div>
                     </form>
 
-                    <!-- Rodapé Mobile -->
+                    <!-- Mobile Footer -->
                     <div class="d-lg-none text-center text-secondary fw-medium mt-5 small">
                         &copy; {{ date('Y') }} Todo Studio
                     </div>
@@ -183,7 +183,7 @@
         </div>
     </div>
 
-    <!-- Estilos de Refinamento -->
+    <!-- Refinement Styles -->
     <style>
         .hover-dark:hover {
             color: #000 !important;
