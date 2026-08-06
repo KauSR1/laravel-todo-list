@@ -2,19 +2,21 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Middleware\UserIsLogged;
+use App\Http\Middleware\UserIsNotLogged;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('auth.login');
+// Auth - Routes
+Route::middleware([UserIsNotLogged::class])->group(function () {
+    Route::get('/login', [LoginController::class, 'create'])->name('login');
+    Route::post('/login', [LoginController::class, 'store'])->name('login.store');
+    Route::get('/register', [RegisterController::class, 'create'])->name('register');
+    Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
 });
 
-// Auth - Routes
-
-Route::get('/login', [LoginController::class, 'create'])->name('login');
-Route::post('/login', [LoginController::class, 'store'])->name('login.store');
-
-Route::get('/register', [RegisterController::class, 'create'])->name('register');
-Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
-
-Route::get('/index', [HomeController::class, 'index'])->name('home');
+// app route
+Route::middleware([UserIsLogged::class])->group(function () {
+    Route::get('/', [HomeController::class, 'index'])->name('home');
+    Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+});

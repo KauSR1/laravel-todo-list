@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Business\Auth\LogoutUserBusiness;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginUserRequest;
 use App\Business\Auth\LoginUserBusiness;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -26,6 +28,12 @@ class LoginController extends Controller
 
         $request->session()->regenerate();
 
-        return to_route('home');;
+        return to_route('home');
+    }
+
+    public function logout(LogoutUserBusiness $logoutBusiness, Request $request)
+    {
+        $logoutBusiness->execute($request);
+        return to_route('login');
     }
 }
