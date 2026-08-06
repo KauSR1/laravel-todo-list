@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Task\TaskController;
 use App\Http\Middleware\UserIsLogged;
 use App\Http\Middleware\UserIsNotLogged;
 use App\Http\Controllers\HomeController;
@@ -19,4 +20,7 @@ Route::middleware([UserIsNotLogged::class])->group(function () {
 Route::middleware([UserIsLogged::class])->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
     Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+    Route::get('/newTask', [TaskController::class, 'create'])->name('newTask');
+    Route::post('/newTaskSubmit', [TaskController::class, 'store'])->name('newTaskSubmit');
 });

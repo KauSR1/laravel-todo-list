@@ -17,11 +17,11 @@ class RegisterController extends Controller
     }
 
     /**
-     * submit a new user.
+     * Submit a new user.
      */
     public function store(RegisterUserRequest $request, RegisterUserBusiness $business)
     {
         $business->handle($request->validated());
-        return redirect('/login')->with('success', 'Usuário cadastrado com sucesso!');
+        return redirect('/login')->with('success', 'User registered successfully!');
     }
 }
