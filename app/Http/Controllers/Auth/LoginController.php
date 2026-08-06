@@ -23,7 +23,7 @@ class LoginController extends Controller
         if (!$loginBusiness->authenticate($username, $password)) {
             return back()
                 ->withInput($request->only('text_username'))
-                ->withErrors(['text_username' => 'Usuário ou senha inválidos.']);
+                ->withErrors(['text_username' => 'Invalid username or password.']);
         }
 
         $request->session()->regenerate();

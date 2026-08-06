@@ -29,22 +29,27 @@ class RegisterUserRequest extends FormRequest
         ];
     }
 
+    /**
+     * Get the custom validation messages.
+     *
+     * @return array<string, string>
+     */
     public function messages(): array
     {
         return [
-            'text_username.required' => 'Username precisa ser preenchido',
-            'text_username.min' => 'Username deve ter ao menos 4 caracteres',
-            'text_username.max' => 'Username deve ter no máximo 15 caracteres',
-            'text_username.unique' => 'Este username já existe na aplicação',
+            'text_username.required' => 'The username field is required.',
+            'text_username.min' => 'The username must be at least 4 characters.',
+            'text_username.max' => 'The username must not exceed 15 characters.',
+            'text_username.unique' => 'This username is already taken.',
 
-            'text_email.required' => 'Email precisa ser preenchido',
-            'text_email.email' => 'Insira um endereço de email válido',
-            'text_email.unique' => 'Este email já consta como cadastrado na aplicação',
+            'text_email.required' => 'The email field is required.',
+            'text_email.email' => 'Please enter a valid email address.',
+            'text_email.unique' => 'This email is already registered.',
 
-            'text_password.required' => 'Password precisa ser preenchido',
-            'text_password.min' => 'Password deve ter ao menos 8 caracteres',
-            'text_password.max' => 'Password deve ter no máximo 64 caracteres',
-            'text_password.confirmed' => 'As senhas precisam ser iguais',
+            'text_password.required' => 'The password field is required.',
+            'text_password.min' => 'The password must be at least 8 characters.',
+            'text_password.max' => 'The password must not exceed 64 characters.',
+            'text_password.confirmed' => 'The password confirmation does not match.',
         ];
     }
 }
