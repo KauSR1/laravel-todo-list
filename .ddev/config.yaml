@@ -7,14 +7,13 @@ xdebug_enabled: false
 additional_hostnames: []
 additional_fqdns: []
 database:
-  type: mariadb
-  version: "11.8"
+    type: mariadb
+    version: "11.8"
 use_dns_when_possible: true
 composer_version: "2"
 web_environment: []
 nodejs_version: "24"
 corepack_enable: false
-host_db_port: "33060"
 
 # Key features of DDEV's config.yaml:
 

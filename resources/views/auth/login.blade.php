@@ -89,10 +89,6 @@
 
                         <!-- Password -->
                         <div class="mb-4">
-                            <div class="d-flex justify-content-between align-items-center mb-1">
-                                <label for="text_password" class="form-label text-dark small fw-semibold mb-0">Password</label>
-                                <a href="#" class="small text-decoration-none text-secondary fw-semibold hover-dark">Forgot password?</a>
-                            </div>
                             <div class="input-group border border-secondary border-opacity-25 rounded-2 bg-light">
                                 <span class="input-group-text bg-transparent border-0 text-secondary ps-3">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lock" viewBox="0 0 16 16">

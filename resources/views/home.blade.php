@@ -20,7 +20,8 @@
                     </div>
                     <div class="d-none d-lg-block">
                         <h1 class="h3 fw-bold text-dark mb-1">Task Dashboard</h1>
-                        <p class="text-secondary fw-medium small mb-0">Manage your daily tasks quickly and organized.</p>
+                        <p class="text-secondary fw-medium small mb-0">Manage your daily tasks quickly and
+                            organized.</p>
                     </div>
 
                     <!-- New Task Button (Top) -->

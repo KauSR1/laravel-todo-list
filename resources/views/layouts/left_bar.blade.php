@@ -32,7 +32,7 @@
             <li>
                 <a href="/" class="nav-link text-white bg-primary rounded-2 py-2 px-3 fw-semibold d-flex align-items-center gap-2 shadow-sm">
                     <i class="fa-solid fa-list-check flex-shrink-0"></i>
-                    <span class="sidebar-text">My Tasks</span>
+                    <span class="sidebar-text">Task Dashboard</span>
                 </a>
             </li>
         </ul>
