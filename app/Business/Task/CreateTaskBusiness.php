@@ -15,8 +15,7 @@ class CreateTaskBusiness
             'user_id' => auth()->user()->id,
             'title' => $data['text_title'],
             'description' => $data['text_note'],
-            'priority' => $data['priority'],
-            'date_limited' => $data['date_limited'],
+            'date_limited' => $data['date_limited'] ?? null,
         ]);
     }
 }
