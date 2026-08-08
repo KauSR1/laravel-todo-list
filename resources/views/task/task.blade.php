@@ -11,7 +11,12 @@
                     style="width: 1.25em; height: 1.25em;">
                 <div class="w-100 overflow-hidden">
                     <!-- Example of display based on migration priority -->
-                    <span class="badge bg-warning text-dark fw-bold mb-2 px-2 py-1" style="font-size: 0.75rem;">
+                    <span class="badge
+                     @if($task['priority'] == 0) bg-secondary
+                     @elseif($task['priority'] == 1) bg-danger
+                     @elseif($task['priority'] == 2) bg-success
+                     @endif
+                     fw-bold mb-2 px-2 py-1" style="font-size: 0.75rem;">
                         Priority: <span style="font-size: 0.75rem;">{{ $task->priority_label }}</span>
                     </span>
                     <h4 class="h5 fw-bold text-dark text-truncate mb-0">{{ $task['title'] }}</h4>
@@ -23,11 +28,12 @@
                     <i class="fa-solid fa-ellipsis-vertical fs-5"></i>
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end border shadow">
-                    <li><a class="dropdown-item py-2 fw-medium" href="/edit/{{Crypt::encrypt($task['id'])}}"><i
+                    <li><a class="dropdown-item py-2 fw-medium"
+                           href="{{ route('editTasks', ['id' => Crypt::encrypt($task['id'])]) }}"><i
                                 class="fa-regular fa-pen-to-square me-2 text-primary"></i>Edit</a>
                     </li>
                     <li><a class="dropdown-item py-2 text-danger fw-medium"
-                           href="/delete/{{Crypt::encrypt($task['id'])}}"><i
+                           href="{{ route('deleteConfirm', ['id' => Crypt::encrypt($task['id'])]) }}"><i
                                 class="fa-regular fa-trash-can me-2"></i>Delete</a></li>
                 </ul>
             </div>
@@ -41,7 +47,11 @@
         <div
             class="d-flex align-items-center justify-content-between pt-3 border-top border-secondary border-opacity-25 text-dark fw-semibold"
             style="font-size: 0.8rem;">
-            <span><i class="fa-regular fa-clock me-1 text-muted"></i> Due Date: {{ date('Y-m-d', strtotime($task['date_limited']))}}</span>
+            @if($task['date_limited'] == null)
+                <span><i class="fa-regular fa-clock me-1 text-muted"></i></span>
+            @else
+                <span><i class="fa-regular fa-clock me-1 text-muted"></i> Due Date: {{ date('Y-m-d', strtotime($task['date_limited']))}}</span>
+            @endif
         </div>
     </div>
 </div>

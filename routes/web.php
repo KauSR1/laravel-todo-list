@@ -23,4 +23,10 @@ Route::middleware([UserIsLogged::class])->group(function () {
 
     Route::get('/newTask', [TaskController::class, 'create'])->name('newTask');
     Route::post('/newTaskSubmit', [TaskController::class, 'store'])->name('newTaskSubmit');
+
+    Route::get('/editTasks/{id}', [TaskController::class, 'edit'])->name('editTasks');
+    Route::post('/editTasksSubmit/{id}', [TaskController::class, 'update'])->name('editTasksSubmit');
+
+    Route::get('/deleteConfirm/{id}', [TaskController::class, 'confirmDelete'])->name('deleteConfirm');
+    Route::delete('/deleteTask/{id}', [TaskController::class, 'destroy'])->name('deleteTask');
 });

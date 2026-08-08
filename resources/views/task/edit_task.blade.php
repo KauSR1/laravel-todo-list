@@ -11,7 +11,7 @@
                 <!-- Header with Close Button -->
                 <div class="d-flex justify-content-between align-items-center pb-4 mb-4" style="border-bottom: 1px solid #f0eee9;">
                     <h2 class="h5 mb-0 fw-normal tracking-oriental text-uppercase" style="color: #1a1a1a; font-size: 0.9rem;">
-                        ［ Create Task ］
+                        ［ Edit Task ］
                     </h2>
                     {{-- Cancel and return to Home --}}
                     <a href="{{ route('home') }}" class="btn btn-oriental-danger px-3 py-1 text-decoration-none" title="Cancel">
@@ -29,9 +29,12 @@
                 <!-- Form Card -->
                 <div class="p-4 p-md-5 bg-white mb-4" style="border: 1px solid #e5e3dd;">
 
-                    <!-- Task Creation Form -->
-                    <form action="{{ route('newTaskSubmit') }}" method="post">
+                    <!-- Task Update Form -->
+                    <form action="{{ route('editTasksSubmit', ['id' => Crypt::encrypt($task['id'])]) }}" method="post">
                         @csrf
+
+                        {{-- Campo oculto essencial para o Controller receber via $request->task_id --}}
+                        <input type="hidden" name="task_id" value="{{ Crypt::encrypt($task['id']) }}">
 
                         <!-- Field: Title -->
                         <div class="mb-4">
@@ -41,11 +44,10 @@
                             <input type="text"
                                    class="form-control input-oriental"
                                    name="text_title"
-                                   value="{{ old('text_title') }}"
+                                   value="{{ old('text_title', $task['title']) }}"
                                    placeholder="Enter task title..."
                                    required>
 
-                            {{-- Title validation error --}}
                             @error('text_title')
                             <div class="text-oriental-error small mt-2 fw-light" style="color: #c93b2b;">
                                 ［ {{ $message }} ］
@@ -62,9 +64,8 @@
                                       name="text_note"
                                       rows="4"
                                       placeholder="Write your task description here..."
-                                      required>{{ old('text_note') }}</textarea>
+                                      required>{{ old('text_note', $task['description']) }}</textarea>
 
-                            {{-- Description validation error --}}
                             @error('text_note')
                             <div class="text-oriental-error small mt-2 fw-light" style="color: #c93b2b;">
                                 ［ {{ $message }} ］
@@ -79,11 +80,10 @@
                                 <label class="form-label text-muted small text-uppercase tracking-oriental" style="font-size: 0.65rem;">
                                     Priority
                                 </label>
-                                <span class="form-control input-oriental" name="priority">
-                                    <option value="0" {{ old('priority') == 0 ? 'selected' : '' }}>Pending</option>
-                                    <!--  <option value="1" {{ old('priority') == 1 ? 'selected' : '' }}>Completed</option> -->
-                                    <!-- <option value="2" {{ old('priority') == 2 ? 'selected' : '' }}>High</option> -->
-                                </span>
+                                {{-- Corrigido de <span> para <select> para que as options funcionem --}}
+                                <select class="form-control input-oriental" name="priority">
+                                    <option value="0" {{ (old('priority', $task['priority'] ?? 0) == 0) ? 'selected' : '' }}>Pending</option>
+                                </select>
 
                                 @error('priority')
                                 <div class="text-oriental-error small mt-2 fw-light" style="color: #c93b2b;">
@@ -100,8 +100,7 @@
                                 <input type="date"
                                        class="form-control input-oriental"
                                        name="date_limited"
-                                       value="{{ old('date_limited') }}"
-                                       >
+                                       value="{{ old('date_limited', $task['date_limited']) }}">
 
                                 @error('date_limited')
                                 <div class="text-oriental-error small mt-2 fw-light" style="color: #c93b2b;">
@@ -113,13 +112,11 @@
 
                         <!-- Action Buttons -->
                         <div class="d-flex justify-content-end gap-2 pt-3" style="border-top: 1px dashed #f0eee9;">
-                            {{-- Cancel --}}
                             <a href="{{ route('home') }}" class="btn btn-oriental-outline py-2 px-4 text-uppercase text-decoration-none">
                                 <i class="fa-solid fa-ban me-2"></i>Cancel
                             </a>
-                            {{-- Save Entry --}}
                             <button type="submit" class="btn btn-oriental-dark py-2 px-4 text-uppercase fw-bold">
-                                <i class="fa-regular fa-circle-check me-2"></i>Save Entry
+                                <i class="fa-regular fa-circle-check me-2"></i>Edit Entry
                             </button>
                         </div>
                     </form>
