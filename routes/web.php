@@ -29,4 +29,6 @@ Route::middleware([UserIsLogged::class])->group(function () {
 
     Route::get('/deleteConfirm/{id}', [TaskController::class, 'confirmDelete'])->name('deleteConfirm');
     Route::delete('/deleteTask/{id}', [TaskController::class, 'destroy'])->name('deleteTask');
+
+    Route::patch('/tasks/{id}/complete', [TaskController::class, 'complete'])->name('tasks.complete');
 });

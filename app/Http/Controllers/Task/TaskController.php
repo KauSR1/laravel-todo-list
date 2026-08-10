@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Task;
 
+use App\Business\Task\CompleteTaskBusiness;
 use App\Business\Task\CreateTaskBusiness;
 use App\Business\Task\UpdateTaskBusiness;
 use App\Business\Task\DeleteTaskBusiness;
@@ -20,6 +21,18 @@ class TaskController extends Controller
         return view('task.new_task');
     }
 
+    /**
+     * Store a newly created task in storage.
+     */
+    public function store(CreateTaskRequest $request, CreateTaskBusiness $business)
+    {
+        $business->handle($request->validated());
+        return redirect('/')->with('success', 'Task registered successfully!');
+    }
+
+    /**
+     * Show the form to edit the specified task.
+     */
     public function edit($id)
     {
         $decryptedId = Decrypt::decryptId($id);
@@ -32,29 +45,9 @@ class TaskController extends Controller
         return view('task.edit_task', compact('task'));
     }
 
-    public function confirmDelete($id)
-
-    {
-        $decryptedId = Decrypt::decryptId($id);
-        $task = \App\Models\Task::find($decryptedId);
-
-        if (!$task) {
-            return redirect('/')->with('error', 'Task not found.');
-        }
-
-        return view('task.delete_task', compact('task'));
-    }
-
     /**
-     * submit a new task.
+     * Update the specified task in storage.
      */
-
-    public function store(CreateTaskRequest $request, CreateTaskBusiness $business)
-    {
-        $business->handle($request->validated());
-        return redirect('/login')->with('success', 'Task registered successfully!');
-    }
-
     public function update(UpdateTaskRequest $request, UpdateTaskBusiness $business)
     {
         $id = Decrypt::decryptId($request->task_id);
@@ -67,6 +60,24 @@ class TaskController extends Controller
         return redirect('/')->with('success', 'Task updated successfully!');
     }
 
+    /**
+     * Show the confirmation form to delete the specified task.
+     */
+    public function confirmDelete($id)
+    {
+        $decryptedId = Decrypt::decryptId($id);
+        $task = \App\Models\Task::find($decryptedId);
+
+        if (!$task) {
+            return redirect('/')->with('error', 'Task not found.');
+        }
+
+        return view('task.delete_task', compact('task'));
+    }
+
+    /**
+     * Remove the specified task from storage.
+     */
     public function destroy($id, DeleteTaskBusiness $business)
     {
         $decryptedId = Decrypt::decryptId($id);
@@ -77,5 +88,21 @@ class TaskController extends Controller
         }
 
         return redirect()->route('home')->with('success', 'Task deleted successfully!');
+    }
+
+    /**
+     * Complete the specified task.
+     */
+
+    public function complete($id, completeTaskBusiness $business)
+    {
+        $decryptedId = Decrypt::decryptId($id);
+        $completed = $business->handle($decryptedId);
+
+        if (!$completed) {
+            return redirect()->back()->with('error', 'Task not found or could not be completed.');
+        }
+
+        return redirect()->back()->with('success', 'Task marked as completed!');
     }
 }
