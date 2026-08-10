@@ -33,31 +33,31 @@ O sistema permitirá ao usuário:
 
 # Requisitos Funcionais
 
-### RF-01 — Cadastro de Tarefa
+### ~~RF-01 — Cadastro de Tarefa~~
 
 O sistema deverá permitir que o usuário cadastre uma nova tarefa informando título, descrição, prioridade e data limite.
 
 ---
 
-### RF-02 — Listagem de Tarefas
+### ~~RF-02 — Listagem de Tarefas~~
 
 O sistema deverá exibir todas as tarefas cadastradas, apresentando suas principais informações.
 
 ---
 
-### RF-03 — Conclusão de Tarefa
+### ~~RF-03 — Conclusão de Tarefa~~
 
 O sistema deverá permitir que uma tarefa pendente seja marcada como concluída, registrando automaticamente a data e hora da conclusão.
 
 ---
 
-### RF-04 — Edição de Tarefa
+### ~~RF-04 — Edição de Tarefa~~
 
 O sistema deverá permitir a atualização das informações de uma tarefa, respeitando as regras de negócio para tarefas concluídas.
 
 ---
 
-### RF-05 — Remoção de Tarefa
+### ~~RF-05 — Remoção de Tarefa~~
 
 O sistema deverá permitir a exclusão apenas de tarefas pendentes.
 
@@ -65,25 +65,25 @@ O sistema deverá permitir a exclusão apenas de tarefas pendentes.
 
 # Requisitos Não Funcionais
 
-### RNF-01 — Segurança
+### ~~RNF-01 — Segurança~~
 
 O sistema deverá validar todas as entradas do usuário para evitar dados inválidos.
 
 ---
 
-### RNF-02 — Performance
+### ~~RNF-02 — Performance~~
 
 As operações de cadastro, consulta e atualização deverão possuir tempo de resposta adequado para uma aplicação de pequeno porte.
 
 ---
 
-### RNF-03 — Persistência
+### ~~RNF-03 — Persistência~~
 
 As tarefas deverão permanecer armazenadas mesmo após o encerramento da aplicação.
 
 ---
 
-### RNF-04 — Responsividade
+### ~~RNF-04 — Responsividade~~
 
 A interface deverá ser compatível com dispositivos desktop e dispositivos móveis.
 
@@ -103,25 +103,25 @@ Tarefas sem data limite nunca poderão ser consideradas atrasadas.
 
 ---
 
-### RN-03 — Tarefa Concluída
+### ~~RN-03 — Tarefa Concluída~~
 
 Uma tarefa concluída não poderá ser considerada atrasada nem concluída novamente.
 
 ---
 
-### RN-04 — Criação
+### ~~RN-04 — Criação~~
 
 Toda tarefa criada deverá iniciar com o status **Pendente** e sem data de conclusão.
 
 ---
 
-### RN-05 — Conclusão
+### ~~RN-05 — Conclusão~~
 
 Ao concluir uma tarefa, o sistema deverá registrar automaticamente a data e hora da conclusão.
 
 ---
 
-### RN-06 — Integridade dos Estados
+### ~~RN-06 — Integridade dos Estados~~
 
 O sistema deverá impedir estados inválidos, como:
 

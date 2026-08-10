@@ -7,10 +7,20 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $id = \Auth::user()->id;
-        $tasks = User::find($id)->tasks()->get();
+        $filter = $request->query('filter', 'all');
+
+        $tasks = User::find($id)->tasks();
+
+        if ($filter === 'pending') {
+            $tasks->where('priority', '!=', 2);
+        } elseif ($filter === 'completed') {
+            $tasks->where('priority', 2);
+        }
+
+        $tasks = $tasks->get();
 
         return view('home', ['tasks' => $tasks]);
     }
