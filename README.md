@@ -316,7 +316,7 @@ ddev exec ./vendor/bin/pint
 - Senhas são armazenadas utilizando o hashing padrão do Laravel.
 - Caso identifique uma vulnerabilidade, evite abrir uma issue pública — entre em contato diretamente com o mantenedor do repositório.
 
-> ⚠️ **Limitação conhecida:** existe uma `TaskPolicy` que define corretamente as regras de posse (`$user->id === $task->user_id`), mas ela ainda **não está sendo aplicada** nos Controllers/Business Layer. Os métodos de edição, conclusão e exclusão de tarefas (`UpdateTaskBusiness`, `CompleteTaskBusiness`, `DeleteTaskBusiness`, e os métodos `edit`/`confirmDelete` do `TaskController`) buscam a tarefa apenas por ID, sem checar se ela pertence ao usuário autenticado. Isso caracteriza um risco de **IDOR** (acesso indevido a tarefas de outros usuários caso o ID seja descoberto). A correção está priorizada no [roadmap](#próximas-evoluções).
+> ⚠️ **Limitação conhecida:** existe uma `TaskPolicy` que define corretamente as regras de posse (`$user->id === $task->user_id`), mas ela ainda **não está sendo aplicada** nos Controllers/Business Layer. Os métodos de edição, conclusão e exclusão de tarefas (`UpdateTaskBusiness`, `CompleteTaskBusiness`, `DeleteTaskBusiness`, e os métodos `edit`/`confirmDelete` do `TaskController`) buscam a tarefa apenas por ID, sem checar se ela pertence ao usuário autenticado. Isso caracteriza um risco de **IDOR** (acesso indevido a tarefas de outros usuários caso o ID seja descoberto).
 
 ## Contribuindo
 
@@ -327,20 +327,6 @@ Contribuições são bem-vindas. Sugestão de fluxo:
 3. Implemente a alteração, seguindo os [padrões de código](#padrões-de-código)
 4. Garanta que a aplicação continua rodando corretamente via `ddev`
 5. Abra um Pull Request descrevendo a motivação e o escopo da mudança
-
-## Próximas evoluções
-
-Algumas evoluções naturais para o projeto incluem:
-
-- [ ] **Aplicar a `TaskPolicy` nos Controllers/Business Layer** (via `authorize()` ou escopo `where('user_id', ...)`), corrigindo o risco de IDOR descrito em [Segurança](#segurança) — prioridade alta
-- [ ] Implementação de testes automatizados (incluindo teste de isolamento entre usuários, que teria pego o problema acima)
-- [ ] Filtros e ordenação de tarefas
-- [ ] Paginação
-- [ ] API REST
-- [ ] Documentação da API (ex.: OpenAPI/Swagger)
-- [ ] Testes de autorização e isolamento entre usuários
-- [ ] Pipeline de CI para validação automática (lint, testes, build)
-- [ ] Containerização e configuração de ambientes de desenvolvimento e produção mais próximos entre si
 
 ## FAQ
 
