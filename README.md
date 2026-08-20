@@ -28,7 +28,6 @@ Aplicação web para gerenciamento de tarefas pessoais, desenvolvida com Laravel
 - [Padrões de código](#padrões-de-código)
 - [Segurança](#segurança)
 - [Contribuindo](#contribuindo)
-- [Roadmap / Próximas evoluções](#próximas-evoluções)
 - [FAQ](#faq)
 - [Objetivo técnico](#objetivo-técnico)
 - [Licença](#licença)
